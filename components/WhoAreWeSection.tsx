@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const WhoAreWeSection = () => {
   return (
     <section className="relative w-full min-h-[60vh] md:min-h-[80vh] bg-white flex flex-col justify-center items-center overflow-hidden py-12 md:py-20">
-      <div className="container px-6 relative z-10 flex flex-col items-center max-w-[1440px] mx-auto">
+      <div className="container px-6 relative z-10 flex flex-col items-center max-w-360 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ const WhoAreWeSection = () => {
             select-none
             
             
-            bg-gradient-to-b from-[#EFEB11] to-[#89870AEB] 
+            bg-linear-to-b from-[#EFEB11] to-[#89870AEB] 
             bg-clip-text 
             text-transparent
 

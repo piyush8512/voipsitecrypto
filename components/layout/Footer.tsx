@@ -18,7 +18,7 @@ const Footer = () => {
 
   return (
     // 1. Background Gradient & Spacing
-    <footer className="w-full bg-gradient-to-b from-[#F1F1F1] to-[#FFFFFF] py-16 lg:py-24">
+    <footer className="w-full bg-gray-100 py-16 lg:py-12">
       {/* 2. Center Container (matches Header max-width) */}
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center md:items-start gap-10 md:gap-0">
         {/* --- Left Side: Logo & Copyright --- */}

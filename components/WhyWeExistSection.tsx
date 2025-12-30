@@ -1,100 +1,88 @@
-import React from 'react';
+"use client";
 
-// Define the shape of our data
+import React from "react";
+import { motion, Variants } from "framer-motion";
+
 interface MissionCardProps {
   number: string;
   text: string;
-  offset?: boolean; // To handle the staggered layout (up/down)
+  offset?: boolean;
 }
 
 const missionData: MissionCardProps[] = [
-  {
-    number: "1",
-    text: "To solve problems that truly matter.",
-    offset: true, // Pushed down
-  },
+  { number: "1", text: "To solve problems that truly matter.", offset: true },
   {
     number: "2",
-    text: "To make advanced AI & cybersecurity usable for everyday people.",
-    offset: false, // Pushed up (default)
+    text: "To make advanced AI & cybersecurity usable.",
+    offset: false,
   },
   {
     number: "3",
-    text: "To create technology that is built with empathy & responsibility.",
-    offset: true, // Pushed down
+    text: "To create technology built with empathy.",
+    offset: true,
   },
-  {
-    number: "4",
-    text: "To empower a safer, smarter, & more equitable digital future.",
-    offset: false, // Pushed up (default)
-  },
+  { number: "4", text: "To empower a safer, smarter future.", offset: false },
 ];
 
-const MissionCard: React.FC<MissionCardProps> = ({ number, text, offset }) => {
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const MissionCard = ({ number, text, offset }: MissionCardProps) => {
   return (
-    <div
+    <motion.div
+      variants={cardVariants}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
       className={`
-        bg-white rounded-2xl p-8 shadow-xl w-full max-w-xs h-80 flex flex-col justify-center
-        transform transition-transform duration-300 hover:scale-105
-        ${offset ? 'lg:translate-y-12' : 'lg:-translate-y-12'}
+        bg-white rounded-xl p-6 shadow-xl w-full 
+        
+        max-w-[250px] h-[260px] 
+        flex flex-col justify-center relative z-20 mx-auto
+        
+        
+        ${offset ? "lg:mt-30" : "lg:mb-0"} 
       `}
     >
-      <div className="mb-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-[#1e2a45] rounded-full">
-          <span className="text-yellow-400 font-bold text-lg">{number}.</span>
+      <div className="mb-4">
+        <div className="flex items-center justify-center w-10 h-10 bg-[#1e2a45] rounded-full shadow-inner">
+          <span className="text-[#dce735] font-bold text-lg">{number}.</span>
         </div>
       </div>
-      <p className="text-slate-900 text-xl font-medium leading-tight">
-        {text}
-      </p>
-    </div>
+
+      <p className="text-slate-900 text-lg font-medium leading-snug">{text}</p>
+    </motion.div>
   );
 };
 
-const CircuitDecorationSVG = () => (
-  <svg
-    className="absolute top-0 left-0 w-64 h-auto opacity-80"
-    viewBox="0 0 300 150"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M-10 20 H50 L80 50 H150 L180 20 H220"
-      stroke="#3b82f6"
-      strokeWidth="4"
-      strokeLinecap="round"
-    />
-    <path
-      d="M-10 40 H40 L70 70 H120 L150 40 H250"
-      stroke="#3b82f6"
-      strokeWidth="4"
-      strokeLinecap="round"
-      opacity="0.7"
-    />
-    <path
-      d="M-10 60 H60 L90 90 H180"
-      stroke="#3b82f6"
-      strokeWidth="4"
-      strokeLinecap="round"
-      opacity="0.5"
-    />
-    <circle cx="220" cy="20" r="4" fill="#3b82f6" />
-    <circle cx="250" cy="40" r="4" fill="#3b82f6" />
-    <circle cx="180" cy="90" r="4" fill="#3b82f6" />
-  </svg>
-);
-
 const WhyWeExistSection = () => {
   return (
-    <section className="relative w-full min-h-screen bg-linear-to-b from-[#002244] via-[#1e293b] to-[#595555]  overflow-hidden flex flex-col justify-center">
-      {/* Background Graphic */}
-      <CircuitDecorationSVG />
+    <section className="relative w-full min-h-screen bg-gradient-to-b from-[#002244] via-[#1e293b] to-[#595555] overflow-hidden flex flex-col justify-center items-center py-20 lg:py-0">
+      <div className="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
+        <div className="absolute top-10 right-10 w-96 h-96 bg-[#dce735] rounded-full blur-[150px]" />
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full blur-[150px]" />
+      </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        
-        {/* Cards Grid */}
-        {/* On mobile: standard grid. On Large screens: Flex row with staggered offsets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center gap-6 lg:gap-8 mb-24 lg:mb-0">
+      <motion.div
+        className="container mx-auto px-6 relative z-10 w-full"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-center items-center gap-5 lg:gap-6 w-full">
           {missionData.map((item, index) => (
             <MissionCard
               key={index}
@@ -104,13 +92,20 @@ const WhyWeExistSection = () => {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Footer Title */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <h1 className="text-[12vw] font-bold text-[#dce735] tracking-tighter opacity-90 select-none whitespace-nowrap translate-y-4">
-          Why We Exist
-        </h1>
+      <div className="absolute bottom-[-2%] left-0 w-full flex justify-center pointer-events-none">
+        <div className="w-full max-w-[1920px] px-4 md:px-8">
+          <motion.h1
+            initial={{ y: "100%", opacity: 0 }}
+            whileInView={{ y: "20%", opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+            viewport={{ once: true }}
+            className="text-[clamp(3.5rem,10vw,9rem)] font-bold text-[#dce735] tracking-tighter opacity-90 select-none whitespace-nowrap text-left"
+          >
+            Why We Exist
+          </motion.h1>
+        </div>
       </div>
     </section>
   );

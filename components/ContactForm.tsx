@@ -1,4 +1,3 @@
-// components/ContactForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -16,7 +15,6 @@ export default function ContactForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Add your form submission logic here
   };
 
   const handleChange = (
@@ -29,10 +27,9 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gray-100 pt-32 px-4">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
         <form onSubmit={handleSubmit}>
-          {/* Name Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -60,7 +57,6 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Email and Phone */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -88,7 +84,6 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Subject Selection */}
           <div className="mb-6">
             <label className="block text-sm font-semibold text-gray-900 mb-4">
               Select Subject?
@@ -115,7 +110,6 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Message */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-500 mb-2">
               Message
@@ -130,7 +124,6 @@ export default function ContactForm() {
             />
           </div>
 
-          {/* Submit Button */}
           <div className="flex justify-end">
             <button
               type="submit"

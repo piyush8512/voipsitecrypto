@@ -26,7 +26,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative min-h-screen w-full bg-gradient-to-b from-[#002244] via-[#1e293b] to-[#595555] overflow-hidden flex flex-col">
+    <main className="relative min-h-screen w-full bg-linear-to-b from-[#002244] via-[#1e293b] to-[#595555] overflow-hidden flex flex-col">
       <div className="absolute inset-0 w-full max-w-[1440px] mx-auto h-full pointer-events-none">
         <motion.div
           animate={{ y: [0, -20, 0] }}
@@ -58,14 +58,7 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-50 w-full"
-      >
-        <Header />
-      </motion.div>
+
 
       <section className="relative z-10 flex-grow flex flex-col justify-center items-center text-center w-full px-4 py-12 md:py-0">
         <motion.div

@@ -1,26 +1,26 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
-// Ideally use the alias if your config supports it, otherwise keep your relative path
-import AboutUsManNetwork from "../../src/assets/aboutusmannetwork.svg"; 
+import AboutUsManNetwork from "../../src/assets/aboutusmannetwork.svg";
 
 export default function InnovationSection() {
   return (
-    // 1. Added 'flex justify-center' to keep the inner content centered on large screens
-    <section className="w-full bg-gradient-to-r from-[#EFEB11] to-[#89870AEB] relative overflow-hidden flex justify-center">
-      
-      {/* 2. Added 'max-w-[1500px]' to limit the width on ultra-wide screens */}
-      {/* 'items-stretch' ensures both sides match height */}
-      <div className="w-full max-w-[1500px] flex flex-col lg:flex-row items-stretch">
-        
-        {/* --- Left Side: Text Content --- */}
-        <div className="w-full lg:w-2/3 flex flex-col justify-center p-8 lg:p-34">
-          <div className="text-black text-lg md:text-xl lg:text-2xl leading-relaxed font-medium text-justify">
+    <section className="w-full bg-linear-to-r from-[#EFEB11] to-[#89870AEB] relative overflow-hidden flex justify-center">
+      <div className="w-full max-w-480 flex flex-col-reverse lg:flex-row items-stretch">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="w-full lg:w-2/3 flex flex-col justify-center px-6 py-8 md:py-12 lg:p-24 xl:p-32"
+        >
+          <div className="text-black text-lg sm:text-xl md:text-2xl  font-medium text-justify hyphens-auto">
             <p className="mb-6">
               Innovation drives everything we do. But more importantly, we
               innovate with purpose — focusing on challenges that matter to
-              everyday people.
-              We believe technology should be{" "}
+              everyday people. We believe technology should be{" "}
               <span className="text-white font-bold">
                 practical, understandable, and usable, not overwhelming.
               </span>{" "}
@@ -32,22 +32,25 @@ export default function InnovationSection() {
               world.
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* --- Right Side: Image --- */}
-        <div className="w-full lg:w-1/3 relative min-h-[500px] lg:min-h-[600px]">
-          <div className="absolute inset-0 w-full h-full">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+          className="w-full lg:w-1/3 relative p-6 aspect-square lg:p-0 lg:aspect-auto lg:h-auto lg:min-h-150"
+        >
+          <div className="relative w-full h-full">
             <Image
               src={AboutUsManNetwork}
               alt="Human network connection"
               fill
-              // object-cover prevents squashing
-              // object-center keeps focus in middle (or change to object-right to pin to edge)
-              className="object-cover object-center rounded-tl-[100px] rounded-bl-[100px]"
+              className="object-cover object-center lg:object-left 
+              rounded-3xl lg:rounded-none lg:rounded-tl-[100px] lg:rounded-bl-[100px]"
             />
           </div>
-        </div>
-        
+        </motion.div>
       </div>
     </section>
   );

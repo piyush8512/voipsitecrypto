@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +11,12 @@ const Header = () => {
   const navItems = ["Home", "About Us", "Solutions", "Contact"];
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 w-full">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="absolute top-0 left-0 right-0 z-50 w-full"
+    >
       <div className="max-w-350 mx-auto px-6 py-6 lg:px-12 flex items-center justify-between relative">
         <div className="flex items-center gap-3 z-50">
           <img
@@ -88,7 +94,7 @@ const Header = () => {
           </div>
         )}
       </div>
-    </header>
+    </motion.header>
   );
 };
 
